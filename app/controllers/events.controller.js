@@ -1,3 +1,6 @@
+const Event = require('../../models/event');
+
+
 module.exports = {
   showSingle
 }
@@ -6,5 +9,5 @@ module.exports = {
 function showSingle(req, res) {
   const event = { name: 'Basketball', slug: 'basketball', description: 'Throwing ingo a basket.' };
 
-  res.render('pages/single', { event});
+  res.render('pages/single', { event });
 }
