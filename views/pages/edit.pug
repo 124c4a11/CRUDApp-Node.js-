@@ -1,0 +1,25 @@
+extend ../layout
+
+block content
+  h1.text-center= event.name
+
+
+  .row.justify-content-center
+    .col-sm-8
+      if errors.length > 0
+        .alert.alert-danger
+          each error in errors
+            | #{error} <br>
+
+      if success.length > 0
+        .alert.alert-success= success
+
+      form(action=`/${event.slug}` method="post")
+        .form-group
+          label Name
+          input.form-control(type="text" name="name" value= event.name)
+        .form-group
+          label Description
+          textarea.form-control(name="description" rows="5")= event.description
+        .form-group
+          button.btn.btn-success(type="submit") Update

@@ -15,6 +15,10 @@ router.post('/create', eventsController.processCreate);
 
 
 router.get('/:slug', eventsController.showSingle);
+router.post('/:slug', eventsController.processEdit);
+
+
+router.get('/:slug/edit', eventsController.showEdit);
 
 
 module.exports = router;
