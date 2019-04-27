@@ -1,0 +1,19 @@
+extend ../layout
+
+block content
+  h1.text-center All Events
+
+  if events !== null
+    table.table.table-striped.table-dark.mt-5
+      thead
+        tr
+          th Event Name
+          th Description
+          th
+      tbody
+        each event in events
+          tr
+            td= event.name
+            td= event.description
+            td
+              a.btn.btn-primary(href=`/${event.slug}`) View
