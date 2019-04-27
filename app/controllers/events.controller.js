@@ -7,7 +7,12 @@ module.exports = {
 
 
 function showSingle(req, res) {
-  const event = { name: 'Basketball', slug: 'basketball', description: 'Throwing ingo a basket.' };
+  Event.findOne({ slug: req.params.slug }, (err, event) => {
+    if (err) {
+      res.status(404);
+      res.send('Event not found!');
+    }
 
-  res.render('pages/single', { event });
+    res.render('pages/single', { event });
+  });
 }

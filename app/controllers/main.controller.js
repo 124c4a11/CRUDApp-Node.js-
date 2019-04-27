@@ -7,11 +7,12 @@ module.exports = {
 
 
 function showHome(req, res) {
-  const events = [
-    { name: 'Basketball', slug: 'basketball', description: 'Throwing ingo a basket.' },
-    { name: 'Swimming', slug: 'swimming', description: 'Michael Phels is the fast fish.' },
-    { name: 'Weightlifting', slug: 'weightlifting', description: 'Lifting heavy things up' },
-  ];
+  Event.find({}, (err, events) => {
+    if (err) {
+      res.status(404);
+      res.send('Events not found!');
+    }
 
-  res.render('pages/home', { events });
+    res.render('pages/home', { events });
+  });
 };
