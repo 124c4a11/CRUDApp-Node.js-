@@ -10,6 +10,10 @@ const
 router.get('/', mainController.showHome);
 
 
+router.get('/create', eventsController.showCreate);
+router.post('/create', eventsController.processCreate);
+
+
 router.get('/:slug', eventsController.showSingle);
 
 
