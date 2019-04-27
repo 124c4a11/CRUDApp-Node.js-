@@ -24,18 +24,44 @@ function showSingle(req, res) {
 
 
 function showCreate(req, res) {
-  res.render('pages/create');
+  res.render('pages/create', {
+    errors: req.flash('errors')
+  });
 }
 
 
 function processCreate(req, res) {
+  req.checkBody('name', 'Name is required!').notEmpty();
+  req.checkBody('description', 'Description is required!').notEmpty();
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors.map((err) => err.msg));
+    return res.redirect('/create');
+  }
+
   const event = new Event({
     name: req.body.name,
     description: req.body.description
   });
 
   event.save((err) => {
-    if (err) throw err;
+    if (err) {
+      if (err.name === 'ValidationError') {
+        let errors = [];
+
+        for (let error in err.errors) {
+          errors.push(err.errors[error].message);
+        }
+
+        req.flash('errors', errors);
+
+        return res.redirect('/create');
+      }
+
+      throw err;
+    }
 
     req.flash('success', 'Successfuly creted event!');
 

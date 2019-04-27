@@ -4,5 +4,6 @@ block content
   if success.length > 0
     .alert.alert-success= success
 
-  h1.text-center= event.name
-  p= event.description
+  if event
+    h1.text-center= event.name
+    p= event.description

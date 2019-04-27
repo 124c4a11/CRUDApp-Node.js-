@@ -2,7 +2,8 @@ const
   bodyParser = require('body-parser')
   session = require('express-session'),
   cookieParser = require('cookie-parser'),
-  flash = require('connect-flash');
+  flash = require('connect-flash'),
+  expressValidator = require('express-validator');
 
 const
   express = require('express'),
@@ -24,6 +25,8 @@ app.use(session({
 app.use(flash());
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(expressValidator());
 
 app.use(express.static(__dirname + 'public'));
 app.set('view engine', 'pug');
