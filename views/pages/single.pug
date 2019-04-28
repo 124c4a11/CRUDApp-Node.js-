@@ -1,9 +1,10 @@
 extend ../layout
 
 block content
-  if success.length > 0
-    .alert.alert-success= success
-
   if event
     h1.text-center= event.name
+
+    if success.length > 0
+      .alert.alert-success= success
+
     p= event.description

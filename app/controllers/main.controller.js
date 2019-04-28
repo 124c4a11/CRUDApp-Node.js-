@@ -13,6 +13,9 @@ function showHome(req, res) {
       res.send('Events not found!');
     }
 
-    res.render('pages/home', { events });
+    res.render('pages/home', {
+      events,
+      success: req.flash('success')
+    });
   });
 };

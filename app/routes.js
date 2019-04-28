@@ -14,11 +14,14 @@ router.get('/create', eventsController.showCreate);
 router.post('/create', eventsController.processCreate);
 
 
-router.get('/:slug', eventsController.showSingle);
-router.post('/:slug', eventsController.processEdit);
-
-
 router.get('/:slug/edit', eventsController.showEdit);
+
+
+router.get('/:slug/delete', eventsController.deleteEvent);
+
+
+router.post('/:slug', eventsController.processEdit);
+router.get('/:slug', eventsController.showSingle);
 
 
 module.exports = router;

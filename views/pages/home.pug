@@ -3,18 +3,23 @@ extend ../layout
 block content
   h1.text-center All Events
 
+  if success.length > 0
+    .alert.alert-success.mt-5= success
+
   if events !== null
-    table.table.table-striped.mt-5
-      thead
-        tr
-          th Event Name
-          th Description
-          th
-      tbody
-        each event in events
+    .table-responsive.mt-5
+      table.table.table-striped
+        thead
           tr
-            td= event.name
-            td= event.description
-            td
-              a.btn.btn-primary.m-1(href=`/${event.slug}`) View
-              a.btn.btn-success.m-1(href=`/${event.slug}/edit`) Edit
+            th Event Name
+            th Description
+            th
+        tbody
+          each event in events
+            tr
+              td= event.name
+              td= event.description
+              td
+                a.btn.btn-primary.m-1(href=`/${event.slug}`) View
+                a.btn.btn-success.m-1(href=`/${event.slug}/edit`) Edit
+                a.btn.btn-danger.m-1(href=`/${event.slug}/delete`) Delete
